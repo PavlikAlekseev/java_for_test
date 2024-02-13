@@ -1,4 +1,4 @@
-package ru.stqa.java_for_test.sandbox;
+package ru.stqa.jft.sandbox;
 
 public class Square {
 
