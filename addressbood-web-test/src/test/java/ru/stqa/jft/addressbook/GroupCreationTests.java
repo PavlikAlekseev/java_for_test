@@ -28,6 +28,7 @@ public class GroupCreationTests {
         login("admin", "secret");
     }
 
+    //метод login
     private void login(String username, String password) {
         driver.get("http://localhost/addressbook/");
         driver.manage().window().setSize(new Dimension(1294, 816));
@@ -51,14 +52,17 @@ public class GroupCreationTests {
         returnToGroupPage();
     }
 
+    //метод возвращения на страницу Группы
     private void returnToGroupPage() {
         driver.findElement(By.linkText("group page")).click();
     }
 
+    //метод подтверждения создания группы
     private void submitGroupCreation() {
         driver.findElement(By.name("submit")).click();
     }
 
+    //метод принимает объект GroupData
     private void fillGroupForm(GroupData groupData) {
         driver.findElement(By.name("group_name")).click();
         driver.findElement(By.name("group_name")).sendKeys(groupData.name());
@@ -68,10 +72,12 @@ public class GroupCreationTests {
         driver.findElement(By.name("group_footer")).sendKeys(groupData.footer());
     }
 
+    //метод инициализации создания группы
     private void initGroupCreation() {
         driver.findElement(By.name("new")).click();
     }
 
+    //метод перехода на страницу Группы
     private void goToGroupPage() {
         driver.findElement(By.linkText("groups")).click();
     }
