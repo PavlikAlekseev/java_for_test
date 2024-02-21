@@ -21,6 +21,8 @@ public class ApplicationManager {
 
     public void init() {
         driver = new ChromeDriver();
+        driver.get("http://localhost/addressbook/");
+        driver.manage().window().setSize(new Dimension(1294, 816));
         js = (JavascriptExecutor) groupHelper;
         vars = new HashMap<String, Object>();
         groupHelper = new GroupHelper(driver);
@@ -28,8 +30,6 @@ public class ApplicationManager {
         sessionHelper = new SessionHelper(driver);
         sessionHelper.login("admin", "secret");
     }
-
-
 
     public void stop() {
         driver.quit();
