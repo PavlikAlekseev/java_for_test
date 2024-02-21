@@ -22,7 +22,7 @@ public class HelperBase {
         driver.findElement(locator).click();
     }
 
-    protected void birthdayDropdown(By locator, String text){
+    protected void birthdayDropdown(By locator, String text) {
         String a = "//option[. = '";
         String b = "']";
         click(locator);
