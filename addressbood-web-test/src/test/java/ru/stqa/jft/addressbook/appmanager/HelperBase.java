@@ -2,6 +2,7 @@ package ru.stqa.jft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HelperBase {
     protected WebDriver driver;
@@ -19,5 +20,13 @@ public class HelperBase {
     //вспомогательный метод кликания с параметром locator
     protected void click(By locator) {
         driver.findElement(locator).click();
+    }
+
+    protected void birthdayDropdown(By locator, String text){
+        String a = "//option[. = '";
+        String b = "']";
+        click(locator);
+        WebElement dropdown = driver.findElement(locator);
+        dropdown.findElement(By.xpath(a + (text) + b)).click();
     }
 }
