@@ -1,24 +1,21 @@
-package ru.stqa.jft.addressbook;
+package ru.stqa.jft.addressbook.appmanager;
 
-import org.junit.After;
-import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import ru.stqa.jft.addressbook.model.GroupData;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestBase {
-
-    JavascriptExecutor js;
+public class ApplicationManager {
     public WebDriver driver;
     public Map<String, Object> vars;
+    JavascriptExecutor js;
 
-    @Before
-    public void setUp() {
+    public void init() {
         driver = new ChromeDriver();
         js = (JavascriptExecutor) driver;
         vars = new HashMap<String, Object>();
@@ -35,23 +32,22 @@ public class TestBase {
         driver.findElement(By.cssSelector("input:nth-child(7)")).click();
     }
 
-    @After
-    public void tearDown() {
+    public void stop() {
         driver.quit();
     }
 
-    //метод возвращения на страницу Группы
-    protected void returnToGroupPage() {
+    //возвращение на страницу Группы
+    public void returnToGroupPage() {
         driver.findElement(By.linkText("group page")).click();
     }
 
-    //метод подтверждения создания группы
-    protected void submitGroupCreation() {
+    //подтверждение создания группы
+    public void submitGroupCreation() {
         driver.findElement(By.name("submit")).click();
     }
 
     //метод принимает объект GroupData
-    protected void fillGroupForm(GroupData groupData) {
+    public void fillGroupForm(GroupData groupData) {
         driver.findElement(By.name("group_name")).click();
         driver.findElement(By.name("group_name")).sendKeys(groupData.name());
         driver.findElement(By.name("group_header")).click();
@@ -60,23 +56,23 @@ public class TestBase {
         driver.findElement(By.name("group_footer")).sendKeys(groupData.footer());
     }
 
-    //метод инициализации создания группы
-    protected void initGroupCreation() {
+    //инициализации создания группы
+    public void initGroupCreation() {
         driver.findElement(By.name("new")).click();
     }
 
-    //метод перехода на страницу Группы
-    protected void goToGroupPage() {
+    //переход на страницу Группы
+    public void goToGroupPage() {
         driver.findElement(By.linkText("groups")).click();
     }
 
-    //удалить выбранную группу
-    protected void deleteSelectedGroups() {
+    //удаление выбранной группы
+    public void deleteSelectedGroups() {
       driver.findElement(By.name("delete")).click();
     }
 
-    //выбрать группу
-    protected void selectGroup() {
+    //выбор группы
+    public void selectGroup() {
       driver.findElement(By.name("selected[]")).click();
     }
 }
