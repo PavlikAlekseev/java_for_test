@@ -39,4 +39,20 @@ public class ContactHelper extends HelperBase {
     public void submitContactModification() {
         click(By.name("update"));
     }
+
+    //выбор контакта
+    public void selectContact() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[3]/td/input"));
+    }
+
+    //удаление контакта
+    public void deleteContact() {
+        click(By.cssSelector(".left:nth-child(8) > input"));
+    }
+
+
+    //подтверждение в диалоговом окне удаления контакта
+    public void acceptDeleteContact() {
+        driver.switchTo().alert().accept();
+    }
 }
