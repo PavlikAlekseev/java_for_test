@@ -22,11 +22,10 @@ public class HelperBase {
         driver.findElement(locator).click();
     }
 
+    //метод выбора месяца и дня рождения на карточке создания контакта
     protected void birthdayDropdown(By locator, String text) {
-        String a = "//option[. = '";
-        String b = "']";
         click(locator);
         WebElement dropdown = driver.findElement(locator);
-        dropdown.findElement(By.xpath(a + (text) + b)).click();
+        dropdown.findElement(By.xpath("//option[. = '" + (text) + "']")).click();
     }
 }

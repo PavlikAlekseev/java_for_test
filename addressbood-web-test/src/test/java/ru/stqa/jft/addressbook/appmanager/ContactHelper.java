@@ -29,4 +29,14 @@ public class ContactHelper extends HelperBase {
     public void submitContactCreate() {
         click(By.cssSelector("input:nth-child(87)"));
     }
+
+    //редактирование контакта
+    public void initContactModification() {
+        click(By.cssSelector(".odd:nth-child(3) > .center:nth-child(8) img"));
+    }
+
+    //подтверждение редактирования контакта
+    public void submitContactModification() {
+        click(By.name("update"));
+    }
 }
