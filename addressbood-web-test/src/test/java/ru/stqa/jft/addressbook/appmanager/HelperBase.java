@@ -13,9 +13,14 @@ public class HelperBase {
 
     //вспомогательный метод заполнения объектов класса fillGroupForm
     protected void type(By locator, String text) {
+        //если в переменную приходит null, то остается текст по умолчанию
         if (text != null){
-            click(locator);
-            driver.findElement(locator).sendKeys(text);
+            // проверяем что в поле, если тоже самое, то не трогаем
+            String existingText = driver.findElement(locator).getAttribute("value");
+            if (! text.equals(existingText)){
+                click(locator);
+                driver.findElement(locator).sendKeys(text);
+            }
         }
     }
 
