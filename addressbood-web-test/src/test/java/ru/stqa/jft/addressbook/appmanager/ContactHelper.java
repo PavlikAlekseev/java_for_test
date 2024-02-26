@@ -1,7 +1,10 @@
 package ru.stqa.jft.addressbook.appmanager;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.jft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -10,7 +13,7 @@ public class ContactHelper extends HelperBase {
     }
 
     //метод принимает объект ContactData
-    public void fillContactForm(ContactData contactData) {
+    public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.firstname());
         type(By.name("middlename"), contactData.middlename());
         type(By.name("lastname"), contactData.lastname());
@@ -22,6 +25,13 @@ public class ContactHelper extends HelperBase {
         birthdayDropdown(By.name("bday"), "30");
         birthdayDropdown(By.name("bmonth"), "July");
         type(By.name("byear"), contactData.byear());
+
+        //выбора группы есть только на форме создания контакта (на модификации нету), либо выбираем из списка, либо проверяем отсутствие списка
+        if (creation) {
+            new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.group());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
     }
 
 

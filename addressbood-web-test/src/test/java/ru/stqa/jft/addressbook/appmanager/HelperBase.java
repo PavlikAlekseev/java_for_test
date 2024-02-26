@@ -1,9 +1,6 @@
 package ru.stqa.jft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 public class HelperBase {
     protected WebDriver driver;
@@ -15,10 +12,10 @@ public class HelperBase {
     //вспомогательный метод заполнения объектов класса fillGroupForm
     protected void type(By locator, String text) {
         //если в переменную приходит null, то остается текст по умолчанию
-        if (text != null){
+        if (text != null) {
             // проверяем что в поле, если тоже самое, то не трогаем
             String existingText = driver.findElement(locator).getAttribute("value");
-            if (! text.equals(existingText)){
+            if (!text.equals(existingText)) {
                 click(locator);
                 driver.findElement(locator).sendKeys(text);
             }
@@ -38,13 +35,24 @@ public class HelperBase {
     }
 
     //перехват исключений
-    public boolean isAlertPresent(){
+    public boolean isAlertPresent() {
         try {
             driver.switchTo().alert();
             return true;
         }// если поймали, то перехватить
-        catch (NoAlertPresentException e){
+        catch (NoAlertPresentException e) {
             return false;
         }
+    }
+
+    //метод наличия элемента
+    protected boolean isElementPresent(By locator) {
+        try {
+            driver.findElement(locator);
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+
     }
 }
