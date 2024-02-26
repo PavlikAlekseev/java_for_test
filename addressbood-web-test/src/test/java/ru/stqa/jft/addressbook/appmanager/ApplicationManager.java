@@ -21,7 +21,7 @@ public class ApplicationManager {
 
     public Map<String, Object> vars;
     JavascriptExecutor js;
-    private Browser browser;
+    private final Browser browser;
 
     public ApplicationManager(Browser browser) {
         this.browser = browser;
@@ -38,7 +38,7 @@ public class ApplicationManager {
         driver.get("http://localhost/addressbook/");
         driver.manage().window().setSize(new Dimension(1294, 816));
         js = (JavascriptExecutor) groupHelper;
-        vars = new HashMap<String, Object>();
+        vars = new HashMap<>();
         groupHelper = new GroupHelper(driver);
         navigationHelper = new NavigationHelper(driver);
         sessionHelper = new SessionHelper(driver);
