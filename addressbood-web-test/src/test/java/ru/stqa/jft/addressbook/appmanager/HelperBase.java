@@ -1,6 +1,7 @@
 package ru.stqa.jft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -34,5 +35,16 @@ public class HelperBase {
         click(locator);
         WebElement dropdown = driver.findElement(locator);
         dropdown.findElement(By.xpath("//option[. = '" + (text) + "']")).click();
+    }
+
+    //перехват исключений
+    public boolean isAlertPresent(){
+        try {
+            driver.switchTo().alert();
+            return true;
+        }// если поймали, то перехватить
+        catch (NoAlertPresentException e){
+            return false;
+        }
     }
 }
