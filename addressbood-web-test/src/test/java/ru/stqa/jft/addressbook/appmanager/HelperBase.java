@@ -13,8 +13,10 @@ public class HelperBase {
 
     //вспомогательный метод заполнения объектов класса fillGroupForm
     protected void type(By locator, String text) {
-        click(locator);
-        driver.findElement(locator).sendKeys(text);
+        if (text != null){
+            click(locator);
+            driver.findElement(locator).sendKeys(text);
+        }
     }
 
     //вспомогательный метод кликания с параметром locator
