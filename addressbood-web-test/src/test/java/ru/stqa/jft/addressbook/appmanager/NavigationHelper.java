@@ -19,4 +19,9 @@ public class NavigationHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
+    //переход на главную страницу
+    public void goToHomePage() {
+        click(By.linkText("home"));
+    }
+
 }
