@@ -35,7 +35,7 @@ public class HelperBase {
     }
 
     //перехват исключений
-    public boolean isAlertPresent() {
+    public boolean isAlertPresent(By h1) {
         try {
             driver.switchTo().alert();
             return true;
